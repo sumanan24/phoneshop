@@ -63,13 +63,16 @@
 
                                         if (isset($_GET['delete'])) {
                                             $id = $_GET['delete'];
-                                            $sqldelete = "delete from order where id=$id";
+                                            $sqldelete = "DELETE FROM `order` WHERE `id`= $id";
                                             if (mysqli_query($conn, $sqldelete)) {
-                                                echo "Delete Success";
+                                        ?>
+                                                <div class='alert alert-danger'>Delete Successfully!</div>
+                                                <meta http-equiv='refresh' content='2'>
+                                        <?php
                                             }
                                         }
 
-                                        
+
                                         $sql = "SELECT * FROM `order` WHERE `status` = 'return'";
                                         $result = $conn->query($sql);
 
@@ -92,7 +95,7 @@
                             <i class='fas fa-eye'></i> 
                         </a>
     
-                        <a href='delete.php?id={$row['id']}' class='btn btn-danger' onclick='return confirm(\"Are you sure you want to delete this record?\");'>
+                        <a href='?delete={$row['id']}' class='btn btn-danger' >
                             <i class='fas fa-trash'></i> 
                         </a>
                     </div>

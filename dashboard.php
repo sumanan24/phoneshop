@@ -105,6 +105,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-xl-4 col-md-6">
                                     <div class="card bg-info text-white mb-4">
                                         <div class="card-body">Return
@@ -156,6 +157,34 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card bg-success text-white mb-4">
+                                        <div class="card-body">Customers
+
+                                        <?php
+                                            $sql = "SELECT COUNT(*) AS pending_count FROM `order`";
+                                            $result = $conn->query($sql);
+
+                                            // Check if the query was successful
+                                            if ($result->num_rows > 0) {
+                                                // Fetch the result
+                                                $row = $result->fetch_assoc();
+                                                $pendingCount = $row['pending_count'];
+                                            ?>
+                                                <h2><?php echo $pendingCount; ?></h2>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link" href="customer.php">Add Customer</a>
+                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                             </div>
 
