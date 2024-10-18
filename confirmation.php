@@ -40,33 +40,29 @@ if (isset($_GET['id'])) {
     <style>
         @media print {
             body {
-                margin: 0;
-                padding: 0;
-                width: 100mm; /* Custom size, you can change to your bill-size paper dimensions */
+               
+                width: 70mm; /* Custom size, you can change to your bill-size paper dimensions */
                 height: auto;
-                font-size: 12px;
+                font-size: 16px;
             }
             .no-print {
                 display: none;
             }
             .confirmation-form {
                 border: none;
-                padding: 5px;
-                margin: 0;
+               
             }
             .shop-info h1 {
                 font-size: 16px;
             }
             .shop-info p {
-                font-size: 12px;
+                font-size: 16px;
             }
             .row p, label {
-                font-size: 12px;
-                margin-bottom: 2px;
+                font-size: 16px;
+                
             }
-            .row div {
-                margin-bottom: 5px;
-            }
+            
         }
 
         .confirmation-form {
@@ -78,25 +74,21 @@ if (isset($_GET['id'])) {
 
         .shop-info {
             text-align: center;
-            margin-bottom: 15px;
+            
         }
     </style>
 </head>
 
-<body class="container my-4">
+<body class="container">
 
     <div class="confirmation-form">
         <div class="shop-info">
             <h1 style="font-family: Footlight MT Light; font-weight: bold;">Tharuna Digital Media Works</h1>
-            <p>No:03, Bus Stand, Paranthan Junction, Kilinochchi<br>
-                Phone: +94 77 569 0418<br>
-                Email: Nitharsanroy97@gmail.com <br>
-                Repair Confirmation - <b><?php echo "Order ID".$id; ?></b>
-            </p>
+            <p>No:03, Bus Stand, Paranthan Junction, Kilinochchi<br>Phone: +94 77 569 0418<br>Email: Nitharsanroy97@gmail.com<br>Repair Confirmation - <b><?php echo "Order ID".$id; ?></b></p>
         </div>
         <hr>
 
-        <div class="row mb-2">
+        <div class="row">
             <div class="col-md-6">
                 <label><strong>Customer Name:</strong></label>
                 <p><?php echo $c_name; ?></p>
@@ -107,14 +99,14 @@ if (isset($_GET['id'])) {
             </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="row ">
             <div class="col-md-6">
                 <label><strong>Device Type:</strong></label>
                 <p><?php echo $device_type; ?></p>
             </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="row ">
             <div class="col-md-6">
                 <label><strong>Description of the Problem:</strong></label>
                 <p><?php echo $description; ?></p>
@@ -125,7 +117,7 @@ if (isset($_GET['id'])) {
             </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="row ">
             <div class="col-md-6">
                 <label><strong>Repair Date:</strong></label>
                 <p><?php echo date('F j, Y', strtotime($date)); ?></p>
@@ -138,10 +130,7 @@ if (isset($_GET['id'])) {
         <hr>
 
         <div class="shop-info">
-            <p style="font-weight: bold; font-size: 12px;">Thank you for doing business with us!<br>
-                Please take your phone 15 days before.<br>
-                Please give your confirmation sheet and take the phone.
-            </p>
+            <p style="font-weight: bold; font-size: 12px;">Thank you for doing business with us!<br>Please take your phone 15 days before.<br>Please give your confirmation sheet and take the phone.</p>
         </div>
 
         <div class="no-print mt-4">
