@@ -28,7 +28,7 @@
                             <h1 class="mt-4">Dashboard</h1>
                             <hr>
                             <div class="row">
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card bg-primary text-white mb-4">
                                         <div class="card-body">Pending Details
 
@@ -55,7 +55,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card bg-warning text-white mb-4">
                                         <div class="card-body">In Process
 
@@ -80,7 +80,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card bg-success text-white mb-4">
                                         <div class="card-body">Completed
                                             <?php
@@ -105,7 +105,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-6">
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="card bg-info text-white mb-4">
+                                        <div class="card-body">Return
+
+                                        <?php
+                                            $sql = "SELECT COUNT(*) AS pending_count FROM `order` WHERE `status` = 'return'";
+                                            $result = $conn->query($sql);
+
+                                            // Check if the query was successful
+                                            if ($result->num_rows > 0) {
+                                                // Fetch the result
+                                                $row = $result->fetch_assoc();
+                                                $pendingCount = $row['pending_count'];
+                                            ?>
+                                                <h2><?php echo $pendingCount; ?></h2>
+                                            <?php
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="card-footer d-flex align-items-center justify-content-between">
+                                            <a class="small text-white stretched-link" href="return.php">View Details</a>
+                                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-md-6">
                                     <div class="card bg-danger text-white mb-4">
                                         <div class="card-body">Delevered
 
@@ -130,6 +156,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                             <div class="card mb-4">
@@ -141,7 +168,7 @@
                                     <table id="datatablesSimple">
                                         <thead>
                                             <tr>
-                                                <th>Customer Name</th>
+                                                <th>Customer Name & Date</th>
                                                 <th>Phone</th>
                                                 <th>Device Type</th>
                                                 <th>Description</th>
@@ -153,16 +180,16 @@
                                         <tfoot>
                                             <tr>
 
-                                                <th>Customer Name</th>
+                                                <th>Customer Name & Date</th>
                                                 <th>Phone</th>
                                                 <th>Device Type</th>
                                                 <th>Description</th>
-                                                <th>Request Date</th>
+                                                <th>Status</th>
                                                 <th></th>
                                             </tr>
                                         </tfoot>
                                         <?php
-                                        $sql = "SELECT * FROM `order` WHERE `status` = 'Pending' order by `id` desc";
+                                        $sql = "SELECT * FROM `order` order by `id` desc";
                                         $result = $conn->query($sql);
 
                                         if ($result->num_rows > 0) {
@@ -172,13 +199,22 @@
                                             // Output data of each row
                                             while ($row = $result->fetch_assoc()) {
                                                 echo "<tr>
-                                                        <td>{$row['c_name']}</td>
+                                                        <td>{$row['c_name']} - {$row['date']}</td>
                                                         <td>{$row['c_phone']}</td>
                                                         <td>{$row['device_type']}</td>
                                                         <td>{$row['description']}</td>
-                                                        <td>{$row['date']}</td>
-                                                       <td><a href='confirmation.php?id={$row['id']}' class='btn btn-info'>
-                                                       <i class='fas fa-print'></i></a></td>
+                                                        <td>{$row['status']}</td>
+                                                        
+                                                       <td>
+                                                       
+                                                       <div class='btn-group' role='group'>
+                                                       <a href='confirmation.php?id={$row['id']}' class='btn btn-info'>
+                                                       <i class='fas fa-print'></i></a>
+                                                       <a href='edit.php?id={$row['id']}' class='btn btn-warning'>
+                                                       <i class='fas fa-edit'></i> 
+                                                       </a>
+                                                      </div>
+                                                       </td>
                                                       </tr>";
                                             }
                                             echo "</tbody>";

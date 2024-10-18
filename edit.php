@@ -67,10 +67,17 @@ if (isset($_GET['id'])) {
                         $hired_out = $_POST['hname'];
                         $hire_cost = $_POST['hcost'];
                         $profit = $cost - $hire_cost;
+                        if($status == "return")
+                        {
+                            $advance = 0;
+                            $cost = 0;
+                            $hire_cost = 0;
+                            $profit = 0;
+                        }
                     
                         // Update query
                         $sql = "UPDATE `order` SET `c_name`='$c_name', `c_phone`='$c_phone', `device_type`='$device_type', 
-                                `description`='$description', `status`='$status', `date`='$date', `completion_date`='$completion_date',
+                                `description`='$description', `status`='$status', `date`='$date', `completion_date`='$completion_date', 
                                 `cost`='$cost', `hired_out`='$hired_out', `hire_out_cost`='$hire_cost', `profit`='$profit' 
                                 WHERE `id`=$id";
                     
@@ -105,6 +112,7 @@ if (isset($_GET['id'])) {
                                 <option value="pending" <?php if ($status == 'pending') echo 'selected'; ?>>Pending</option>
                                 <option value="inprogress" <?php if ($status == 'inprogress') echo 'selected'; ?>>In Progress</option>
                                 <option value="completed" <?php if ($status == 'completed') echo 'selected'; ?>>Completed</option>
+                                <option value="return" <?php if ($status == 'return') echo 'selected'; ?>>Return</option>
                                 <option value="delevered" <?php if ($status == 'delevered') echo 'selected'; ?>>Delevered</option>
                             </select>
                         </div>

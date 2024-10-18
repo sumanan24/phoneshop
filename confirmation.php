@@ -40,29 +40,34 @@ if (isset($_GET['id'])) {
     <style>
         @media print {
             body {
-               
-                width: 70mm; /* Custom size, you can change to your bill-size paper dimensions */
-                height: auto;
-                font-size: 16px;
+                width: 74mm;
+                /* A7 width */
+                height: 105mm;
+                /* A7 height */
+                font-size: 12px;
+                /* Adjust font size for A7 */
             }
+
             .no-print {
                 display: none;
             }
+
             .confirmation-form {
                 border: none;
-               
             }
+
             .shop-info h1 {
-                font-size: 16px;
+                font-size: 14px;
             }
+
             .shop-info p {
-                font-size: 16px;
+                font-size: 12px;
             }
-            .row p, label {
-                font-size: 16px;
-                
+
+            .row p,
+            label {
+                font-size: 12px;
             }
-            
         }
 
         .confirmation-form {
@@ -74,7 +79,6 @@ if (isset($_GET['id'])) {
 
         .shop-info {
             text-align: center;
-            
         }
     </style>
 </head>
@@ -84,7 +88,7 @@ if (isset($_GET['id'])) {
     <div class="confirmation-form">
         <div class="shop-info">
             <h1 style="font-family: Footlight MT Light; font-weight: bold;">Tharuna Digital Media Works</h1>
-            <p>No:03, Bus Stand, Paranthan Junction, Kilinochchi<br>Phone: +94 77 569 0418<br>Email: Nitharsanroy97@gmail.com<br>Repair Confirmation - <b><?php echo "Order ID".$id; ?></b></p>
+            <p>No:03, Bus Stand, Paranthan Junction, Kilinochchi<br>Phone: +94 77 569 0418<br>Email: Nitharsanroy97@gmail.com<br><?php if ($status == 'return') { ?> Return Confirmation - <?php } else { ?> Repair Confirmation - <?php } ?><b><?php echo "Order ID" . $id; ?></b></p>
         </div>
         <hr>
 
