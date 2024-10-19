@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
                 /* A7 width */
                 height: 105mm;
                 /* A7 height */
-                font-size: 12px;
+                
                 /* Adjust font size for A7 */
             }
 
@@ -67,7 +67,7 @@ if (isset($_GET['id'])) {
 
             .row p,
             label {
-                font-size: 12px;
+                font-size: 14px;
             }
         }
 
@@ -138,7 +138,7 @@ if (isset($_GET['id'])) {
         <hr>
 
         <div class="shop-info">
-            <p style="font-weight: bold; font-size: 12px;">
+            <p style="font-weight: bold; font-size: 14px;">
             <?php if ($status == 'return') { ?> Thank you for doing business with us!  <?php } else { ?> Thank you for doing business with us!<br>Please take your phone 15 days before.<br>Please give your confirmation sheet and take the phone.</p> <?php } ?>    
             
         </div>
