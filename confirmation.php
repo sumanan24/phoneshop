@@ -19,6 +19,7 @@ if (isset($_GET['id'])) {
         $completion_date = $row['completion_date'];
         $cost = $row['cost'];
         $advance = $row['advance'];
+        $amount=$row['cost'];
     } else {
         echo "No record found for the given ID!";
         exit();
@@ -88,57 +89,62 @@ if (isset($_GET['id'])) {
     <div class="confirmation-form">
         <div class="shop-info">
             <h1 style="font-family: Footlight MT Light; font-weight: bold;">Tharuna Digital Media Works</h1>
-            <p>No:03, Bus Stand, Paranthan Junction, Kilinochchi<br>Phone: +94 77 569 0418<br>Email: Nitharsanroy97@gmail.com<br><?php if ($status == 'return') { ?> Return Confirmation - <?php } else { ?> Repair Confirmation - <?php } ?><b><?php echo "Order ID" . $id; ?></b></p>
+            <p>No:03, Bus Stand, Paranthan Junction, Kilinochchi<br>Phone: +94 77 569 0418<br>Email: Nitharsanroy97@gmail.com<br><?php if ($status == 'return') { ?> Return Note - <?php } else { ?> Repair Confirmation - <?php } ?><b><?php echo "Order ID" . $id; ?></b></p>
         </div>
         <hr>
 
         <div class="row">
-            <div class="col-md-6">
-                <label><strong>Customer Name:</strong></label>
-                <p><?php echo $c_name; ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Customer Name:</strong> <?php echo $c_name; ?></label>
+               
             </div>
-            <div class="col-md-6">
-                <label><strong>Phone Number:</strong></label>
-                <p><?php echo $c_phone; ?></p>
-            </div>
-        </div>
-
-        <div class="row ">
-            <div class="col-md-6">
-                <label><strong>Device Type:</strong></label>
-                <p><?php echo $device_type; ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Phone Number:</strong> <?php echo $c_phone; ?></label>
+                
             </div>
         </div>
 
         <div class="row ">
-            <div class="col-md-6">
-                <label><strong>Description of the Problem:</strong></label>
-                <p><?php echo $description; ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Device Type:</strong> <?php echo $device_type; ?></label>
+                
             </div>
-            <div class="col-md-6">
-                <label><strong>Advance:</strong></label>
-                <p><?php echo "Rs." . ($advance); ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Description of the Problem:</strong> <?php echo $description; ?></label>
+                
             </div>
         </div>
 
         <div class="row ">
-            <div class="col-md-6">
-                <label><strong>Repair Date:</strong></label>
-                <p><?php echo date('F j, Y', strtotime($date)); ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Total Amount:</strong> <?php echo $amount; ?></label>
+                
             </div>
-            <div class="col-md-6">
-                <label><strong>Estimated Completion Date:</strong></label>
-                <p><?php echo date('F j, Y', strtotime($completion_date)); ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Advance:</strong> <?php echo "Rs." . ($advance); ?></label>
+                
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-md-6 mb-1">
+                <label><strong>Repair Date:</strong> <?php echo date('F j, Y', strtotime($date)); ?></label>
+               
+            </div>
+            <div class="col-md-6 mb-1">
+                <label><strong>Estimated Completion Date:</strong> <?php echo date('F j, Y', strtotime($completion_date)); ?></label>
             </div>
         </div>
         <hr>
 
         <div class="shop-info">
-            <p style="font-weight: bold; font-size: 12px;">Thank you for doing business with us!<br>Please take your phone 15 days before.<br>Please give your confirmation sheet and take the phone.</p>
+            <p style="font-weight: bold; font-size: 12px;">
+            <?php if ($status == 'return') { ?> Thank you for doing business with us!  <?php } else { ?> Thank you for doing business with us!<br>Please take your phone 15 days before.<br>Please give your confirmation sheet and take the phone.</p> <?php } ?>    
+            
         </div>
 
         <div class="no-print mt-4">
-            <button class="btn btn-primary" onclick="window.print()">Print Confirmation</button>
+            <button class="btn btn-primary" onclick="window.print()"><?php if ($status == 'return') { ?> Print Return Note  <?php } else { ?> Print Confirmation  <?php } ?></button>
             <a href="dashboard.php" class="btn btn-secondary">Back</a>
         </div>
     </div>

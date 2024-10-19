@@ -35,37 +35,38 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Customer Confirmation Form</title>
+    <title>Customer Bill Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         @media print {
             body {
-                margin: 0;
-                padding: 0;
-                width: 105mm; /* A6 width */
-                height: 148mm; /* A6 height */
-                font-size: 12px; /* Adjust font size for a smaller print */
+                width: 74mm;
+                /* A7 width */
+                height: 105mm;
+                /* A7 height */
+                font-size: 12px;
+                /* Adjust font size for A7 */
             }
+
             .no-print {
                 display: none;
             }
+
             .confirmation-form {
-                padding: 10px; /* Reduce padding for compactness */
                 border: none;
-                margin: 0;
             }
+
             .shop-info h1 {
-                font-size: 16px; /* Adjust heading size */
+                font-size: 14px;
             }
-            .shop-info p, .row p, label {
+
+            .shop-info p {
                 font-size: 12px;
-                margin: 2px 0;
             }
-            .row div {
-                margin-bottom: 5px;
-            }
-            hr {
-                margin: 5px 0;
+
+            .row p,
+            label {
+                font-size: 12px;
             }
         }
 
@@ -78,7 +79,6 @@ if (isset($_GET['id'])) {
 
         .shop-info {
             text-align: center;
-            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -93,56 +93,56 @@ if (isset($_GET['id'])) {
         </div>
         <hr>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label><strong>Customer Name:</strong></label>
-                <p><?php echo $c_name; ?></p>
+        <div class="row">
+            <div class="col-md-6 mb-1">
+                <label><strong>Customer Name:</strong> <?php echo $c_name; ?></label>
+                
             </div>
-            <div class="col-md-6">
-                <label><strong>Phone Number:</strong></label>
-                <p><?php echo $c_phone; ?></p>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label><strong>Device Type:</strong></label>
-                <p><?php echo $device_type; ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Phone Number:</strong> <?php echo $c_phone; ?></label>
+               
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label><strong>Description of the Problem:</strong></label>
-                <p><?php echo $description; ?></p>
-            </div>
-
-            <div class="col-md-6">
-                <label><strong>Amount:</strong></label>
-                <p><?php echo "Rs." .$cost; ?></p>
+        <div class="row">
+            <div class="col-md-6 mb-1">
+                <label><strong>Device Type:</strong> <?php echo $device_type; ?></label>
+                
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label><strong>Advance:</strong></label>
-                <p><?php echo "Rs." . ($advance); ?></p>
+        <div class="row">
+            <div class="col-md-6 mb-1">
+                <label><strong>Description of the Problem:</strong> <?php echo $description; ?></label>
+               
+            </div>
+
+            <div class="col-md-6 mb-1">
+                <label><strong>Amount:</strong> <?php echo "Rs." .$cost; ?></label>
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-1">
+                <label><strong>Advance:</strong> <?php echo "Rs." . ($advance); ?></label>
+               
             </div>
             
-            <div class="col-md-6">
-                <label><strong>Balance:</strong></label>
-                <p><?php echo "Rs." . ($cost-$advance); ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Balance:</strong> <?php echo "Rs." . ($cost-$advance); ?></label>
+                
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label><strong>Repair Date:</strong></label>
-                <p><?php echo date('F j, Y', strtotime($date)); ?></p>
+        <div class="row">
+            <div class="col-md-6 mb-1">
+                <label><strong>Repair Date:</strong> <?php echo date('F j, Y', strtotime($date)); ?></label>
+               
             </div>
-            <div class="col-md-6">
-                <label><strong>Estimated Completion Date:</strong></label>
-                <p><?php echo date('F j, Y', strtotime($completion_date)); ?></p>
+            <div class="col-md-6 mb-1">
+                <label><strong>Estimated Completion Date:</strong> <?php echo date('F j, Y', strtotime($completion_date)); ?></label>
+                
             </div>
         </div>
         <hr>
@@ -152,7 +152,7 @@ if (isset($_GET['id'])) {
         </div>
 
         <div class="no-print mt-4">
-            <button class="btn btn-primary" onclick="window.print()">Print Confirmation</button>
+            <button class="btn btn-primary" onclick="window.print()">Print Bill</button>
             <a href="dashboard.php" class="btn btn-secondary">Back</a>
         </div>
     </div>

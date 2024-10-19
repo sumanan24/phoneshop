@@ -110,7 +110,7 @@
                                     <div class="card bg-info text-white mb-4">
                                         <div class="card-body">Return
 
-                                        <?php
+                                            <?php
                                             $sql = "SELECT COUNT(*) AS pending_count FROM `order` WHERE `status` = 'return'";
                                             $result = $conn->query($sql);
 
@@ -136,7 +136,7 @@
                                     <div class="card bg-danger text-white mb-4">
                                         <div class="card-body">Delevered
 
-                                        <?php
+                                            <?php
                                             $sql = "SELECT COUNT(*) AS pending_count FROM `order` WHERE `status` = 'delevered'";
                                             $result = $conn->query($sql);
 
@@ -162,7 +162,7 @@
                                     <div class="card bg-success text-white mb-4">
                                         <div class="card-body">Customers
 
-                                        <?php
+                                            <?php
                                             $sql = "SELECT COUNT(*) AS pending_count FROM `order`";
                                             $result = $conn->query($sql);
 
@@ -227,24 +227,45 @@
 
                                             // Output data of each row
                                             while ($row = $result->fetch_assoc()) {
-                                                echo "<tr>
-                                                        <td>{$row['c_name']} - {$row['date']}</td>
-                                                        <td>{$row['c_phone']}</td>
-                                                        <td>{$row['device_type']}</td>
-                                                        <td>{$row['description']}</td>
-                                                        <td>{$row['status']}</td>
-                                                        
-                                                       <td>
-                                                       
-                                                       <div class='btn-group' role='group'>
-                                                       <a href='confirmation.php?id={$row['id']}' class='btn btn-info'>
-                                                       <i class='fas fa-print'></i></a>
-                                                       <a href='edit.php?id={$row['id']}' class='btn btn-warning'>
-                                                       <i class='fas fa-edit'></i> 
-                                                       </a>
-                                                      </div>
-                                                       </td>
-                                                      </tr>";
+                                        ?> <tr>
+                                                    <td><?php echo $row['c_name'] . " - " . $row['date']; ?></td>
+                                                    <td><?php echo $row['c_phone']; ?></td>
+                                                    <td><?php echo $row['device_type']; ?></td>
+                                                    <td><?php echo $row['description']; ?></td>
+                                                    <td><?php echo $row['status']; ?></td>
+
+                                                    <td>
+
+                                                        <div class='btn-group' role='group'>
+                                                            <?php
+                                                            if ($row['status'] == 'completed') {
+
+                                                            ?>
+                                                                <a href='bill.php?id=<?php echo $row['id']; ?>' class='btn btn-info'>
+                                                                    <i class='fas fa-print'></i>
+                                                                </a>
+
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <a href='confirmation.php?id=<?php echo $row['id']; ?>' class='btn btn-info'>
+                                                                    <i class='fas fa-print'></i></a>
+                                                            <?php
+                                                            }
+                                                            ?>
+
+
+
+
+
+                                                            <a href='edit.php?id=<?php echo $row['id']; ?>' class='btn btn-warning'>
+                                                                <i class='fas fa-edit'></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                        <?php
                                             }
                                             echo "</tbody>";
                                         }
