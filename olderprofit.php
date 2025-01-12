@@ -20,7 +20,7 @@ if (isset($_POST['filter'])) {
         $sql_daily = "SELECT SUM(profit) AS daily_profit FROM `order` WHERE DATE(completion_date) = '$selected_date'";
         $result_daily = mysqli_query($conn, $sql_daily);
         if ($row_daily = mysqli_fetch_assoc($result_daily)) {
-            $daily_profit = $row_daily['daily_profit'];
+            $daily_profit = $row_daily['daily_profit'] ?? 0;
         }
     }
 
@@ -31,7 +31,7 @@ if (isset($_POST['filter'])) {
         $sql_monthly = "SELECT SUM(profit) AS monthly_profit FROM `order` WHERE DATE_FORMAT(completion_date, '%Y-%m') = '$selected_month'";
         $result_monthly = mysqli_query($conn, $sql_monthly);
         if ($row_monthly = mysqli_fetch_assoc($result_monthly)) {
-            $monthly_profit = $row_monthly['monthly_profit'];
+            $monthly_profit = $row_monthly['monthly_profit'] ?? 0;
         }
     }
 
@@ -42,7 +42,7 @@ if (isset($_POST['filter'])) {
         $sql_annual = "SELECT SUM(profit) AS annual_profit FROM `order` WHERE DATE_FORMAT(completion_date, '%Y') = '$selected_year'";
         $result_annual = mysqli_query($conn, $sql_annual);
         if ($row_annual = mysqli_fetch_assoc($result_annual)) {
-            $annual_profit = $row_annual['annual_profit'];
+            $annual_profit = $row_annual['annual_profit'] ?? 0;
         }
     }
 }
@@ -96,19 +96,19 @@ if (isset($_POST['filter'])) {
                 <?php if (!empty($_POST['date'])): ?>
                     <tr>
                         <td>Daily Profit (<?php echo date('F d, Y', strtotime($selected_date)); ?>)</td>
-                        <td><?php echo number_format($daily_profit, 2); ?> LKR</td>
+                        <td><?php echo number_format((float)$daily_profit, 2); ?> LKR</td>
                     </tr>
                 <?php endif; ?>
                 <?php if (!empty($_POST['month'])): ?>
                     <tr>
                         <td>Monthly Profit (<?php echo date('F Y', strtotime($selected_month . '-01')); ?>)</td>
-                        <td><?php echo number_format($monthly_profit, 2); ?> LKR</td>
+                        <td><?php echo number_format((float)$monthly_profit, 2); ?> LKR</td>
                     </tr>
                 <?php endif; ?>
                 <?php if (!empty($_POST['year'])): ?>
                     <tr>
                         <td>Annual Profit (<?php echo htmlspecialchars($selected_year); ?>)</td>
-                        <td><?php echo number_format($annual_profit, 2); ?> LKR</td>
+                        <td><?php echo number_format((float)$annual_profit, 2); ?> LKR</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

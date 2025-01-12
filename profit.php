@@ -2,9 +2,9 @@
 include_once('config.php');
 
 // Initialize variables for profits
-$daily_profit = 0;
-$monthly_profit = 0;
-$annual_profit = 0;
+$daily_profit = 0.0;
+$monthly_profit = 0.0;
+$annual_profit = 0.0;
 
 // Get the current date, month, and year
 $current_date = date('Y-m-d');
@@ -15,21 +15,21 @@ $current_year = date('Y');
 $sql_daily = "SELECT SUM(profit) AS daily_profit FROM `order` WHERE DATE(completion_date) = '$current_date'";
 $result_daily = mysqli_query($conn, $sql_daily);
 if ($row_daily = mysqli_fetch_assoc($result_daily)) {
-    $daily_profit = $row_daily['daily_profit'];
+    $daily_profit = $row_daily['daily_profit'] ?? 0.0; // Default to 0.0 if null
 }
 
 // Monthly Profit Calculation
 $sql_monthly = "SELECT SUM(profit) AS monthly_profit FROM `order` WHERE DATE_FORMAT(completion_date, '%Y-%m') = '$current_month'";
 $result_monthly = mysqli_query($conn, $sql_monthly);
 if ($row_monthly = mysqli_fetch_assoc($result_monthly)) {
-    $monthly_profit = $row_monthly['monthly_profit'];
+    $monthly_profit = $row_monthly['monthly_profit'] ?? 0.0; // Default to 0.0 if null
 }
 
 // Annual Profit Calculation
 $sql_annual = "SELECT SUM(profit) AS annual_profit FROM `order` WHERE DATE_FORMAT(completion_date, '%Y') = '$current_year'";
 $result_annual = mysqli_query($conn, $sql_annual);
 if ($row_annual = mysqli_fetch_assoc($result_annual)) {
-    $annual_profit = $row_annual['annual_profit'];
+    $annual_profit = $row_annual['annual_profit'] ?? 0.0; // Default to 0.0 if null
 }
 ?>
 
